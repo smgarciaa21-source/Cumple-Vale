@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentina cumple 8 🎀</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Pacifico&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:'Baloo 2',cursive;
+    background:linear-gradient(135deg,#ffd5e5,#fff7fa,#ffc9df);
+    min-height:100vh;
+    color:#7b4059;
+    overflow-x:hidden;
+}
+
+/* =========================
+   PANTALLA DEL SOBRE
+========================= */
+
+#intro{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#ffc5dc,#fff0f6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:1000;
+    transition:opacity .8s ease, visibility .8s ease;
+}
+
+#intro.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.intro-text{
+    font-family:'Pacifico',cursive;
+    color:#d9578c;
+    font-size:28px;
+    text-align:center;
+    margin-bottom:25px;
+    padding:0 20px;
+}
+
+.envelope{
+    width:280px;
+    height:190px;
+    position:relative;
+    cursor:pointer;
+    animation:bounce 2s infinite;
+}
+
+.envelope-body{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:145px;
+    background:#fff;
+    border-radius:0 0 18px 18px;
+    box-shadow:0 12px 30px rgba(160,70,110,.2);
+    border:3px solid #f2a4c2;
+    overflow:hidden;
+}
+
+.envelope-body:before,
+.envelope-body:after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    width:0;
+    height:0;
+    border-style:solid;
+}
+
+.envelope-body:before{
+    left:0;
+    border-width:75px 140px 0 0;
+    border-color:#ffd9e8 transparent transparent transparent;
+}
+
+.envelope-body:after{
+    right:0;
+    border-width:0 140px 75px 0;
+    border-color:transparent #ffd9e8 transparent transparent;
+}
+
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:140px solid transparent;
+    border-right:140px solid transparent;
+    border-top:105px solid #f6aac8;
+    z-index:3;
+    transform-origin:top;
+    transition:transform .9s ease;
+}
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.heart-seal{
+    position:absolute;
+    z-index:5;
+    left:50%;
+    top:70px;
+    transform:translateX(-50%);
+    font-size:42px;
+}
+
+.click{
+    margin-top:20px;
+    color:#a45a76;
+    font-size:17px;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.container{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    padding:25px 15px 45px;
+}
+
+.card{
+    background:rgba(255,255,255,.95);
+    border:4px solid #f2a5c3;
+    border-radius:35px;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:0 15px 45px rgba(150,60,100,.18);
+    position:relative;
+    overflow:hidden;
+    animation:appear 1s ease;
+}
+
+.decor{
+    position:absolute;
+    font-size:34px;
+}
+
+.d1{top:12px;left:14px}
+.d2{top:12px;right:14px}
+.d3{bottom:12px;left:14px}
+.d4{bottom:12px;right:14px}
+
+.small{
+    color:#df6a98;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+h1{
+    font-family:'Pacifico',cursive;
+    color:#df5d91;
+    font-size:45px;
+    margin:7px 0;
+}
+
+.age{
+    width:100px;
+    height:100px;
+    margin:12px auto;
+    border-radius:50%;
+    background:linear-gradient(145deg,#ff91bb,#ffd0e2);
+    border:5px solid white;
+    box-shadow:0 7px 18px rgba(210,80,130,.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:45px;
+    font-weight:bold;
+}
+
+.message{
+    font-size:21px;
+    color:#99516f;
+    line-height:1.3;
+    margin-bottom:15px;
+}
+
+.info{
+    background:#fff0f6;
+    border:2px dashed #efa2c0;
+    border-radius:23px;
+    padding:15px;
+}
+
+.info p{
+    font-size:18px;
+    margin:7px;
+}
+
+.location{
+    font-size:16px!important;
+    line-height:1.3;
+}
+
+.count-title{
+    margin-top:22px;
+    color:#d95f91;
+    font-size:19px;
+}
+
+.countdown{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+    margin:10px 0 20px;
+}
+
+.box{
+    background:#ffddea;
+    border:2px solid #f2b1c9;
+    border-radius:15px;
+    padding:7px 2px;
+}
+
+.box strong{
+    display:block;
+    font-size:25px;
+    color:#d45488;
+}
+
+.box span{
+    font-size:11px;
+}
+
+.buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.btn{
+    text-decoration:none;
+    color:white;
+    padding:14px;
+    border-radius:30px;
+    font-size:18px;
+    font-weight:600;
+    transition:.25s;
+    box-shadow:0 7px 15px rgba(210,80,130,.18);
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.maps{
+    background:#f3a1c1;
+}
+
+.whatsapp{
+    background:#df73a3;
+}
+
+.footer{
+    margin-top:20px;
+    color:#b66b87;
+}
+
+/* =========================
+   CONFETI / CORAZONES
+========================= */
+
+.float{
+    position:fixed;
+    bottom:-40px;
+    pointer-events:none;
+    z-index:20;
+    animation:up linear forwards;
+}
+
+@keyframes up{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+    10%{opacity:1}
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+.confetti{
+    position:fixed;
+    width:9px;
+    height:14px;
+    top:-20px;
+    z-index:2000;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@media(max-width:360px){
+    h1{font-size:38px}
+    .age{
+        width:85px;
+        height:85px;
+        font-size:38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     SOBRE INICIAL
+========================= -->
+
+<div id="intro">
+
+    <div class="intro-text">
+        💕 Tienes una invitación especial 💕
+    </div>
+
+    <div class="envelope" id="envelope">
+
+        <div class="flap"></div>
+
+        <div class="envelope-body"></div>
+
+        <div class="heart-seal">🎀</div>
+
+    </div>
+
+    <div class="click">
+        Toca el sobre para abrir 💗
+    </div>
+
+</div>
+
+
+<!-- =========================
+     INVITACIÓN
+========================= -->
+
+<div class="container">
+
+<div class="card">
+
+    <div class="decor d1">🌸</div>
+    <div class="decor d2">🎀</div>
+    <div class="decor d3">🍓</div>
+    <div class="decor d4">💗</div>
+
+    <div class="small">
+        🎀 ¡Estás invitado! 🎀
+    </div>
+
+    <h1>Valentina</h1>
+
+    <div class="age">8</div>
+
+    <div class="message">
+        ¡Cumplo 8 añitos! 🎂💕<br>
+        Y quiero celebrar este día tan especial contigo.
+    </div>
+
+    <div class="info">
+
+        <p>
+            📅 <strong>27 de Noviembre</strong>
+        </p>
+
+        <p>
+            ⏰ <strong>18H00</strong>
+        </p>
+
+        <p class="location">
+            🏡 <strong>En mi casa</strong><br>
+            Av. Machala 2813 y Letamendi
+        </p>
+
+    </div>
+
+    <div class="count-title">
+        🍓 ¡Falta poquito! 🍓
+    </div>
+
+    <div class="countdown">
+
+        <div class="box">
+            <strong id="days">00</strong>
+            <span>DÍAS</span>
+        </div>
+
+        <div class="box">
+            <strong id="hours">00</strong>
+            <span>HORAS</span>
+        </div>
+
+        <div class="box">
+            <strong id="minutes">00</strong>
+            <span>MIN</span>
+        </div>
+
+        <div class="box">
+            <strong id="seconds">00</strong>
+            <span>SEG</span>
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <a
+            class="btn maps"
+            href="https://maps.app.goo.gl/N6CrTPeNB1XdoSnX9"
+            target="_blank"
+        >
+            📍 Ver ubicación
+        </a>
+
+        <a
+            class="btn whatsapp"
+            id="whatsapp"
+            target="_blank"
+        >
+            💕 Confirmar asistencia
+        </a>
+
+    </div>
+
+    <div class="footer">
+        🍓 Te esperamos para pasar una tarde súper divertida 🍓
+        <br>
+        🎀 Con mucho cariño, Valentina 🎀
+    </div>
+
+</div>
+</div>
+
+
+<script>
+
+/* =========================
+   ABRIR SOBRE
+========================= */
+
+const envelope = document.getElementById("envelope");
+const intro = document.getElementById("intro");
+
+envelope.addEventListener("click", () => {
+
+    envelope.classList.add("open");
+
+    createConfetti();
+
+    setTimeout(() => {
+        intro.classList.add("hide");
+    }, 800);
+
+});
+
+
+/* =========================
+   CUENTA REGRESIVA
+========================= */
+
+const target =
+new Date("2026-11-27T18:00:00-05:00").getTime();
+
+function countdown(){
+
+    const now = new Date().getTime();
+    const difference = target - now;
+
+    if(difference <= 0){
+
+        document.getElementById("days").textContent="00";
+        document.getElementById("hours").textContent="00";
+        document.getElementById("minutes").textContent="00";
+        document.getElementById("seconds").textContent="00";
+
+        return;
+    }
+
+    const days =
+        Math.floor(difference/(1000*60*60*24));
+
+    const hours =
+        Math.floor(
+            (difference%(1000*60*60*24))
+            /(1000*60*60)
+        );
+
+    const minutes =
+        Math.floor(
+            (difference%(1000*60*60))
+            /(1000*60)
+        );
+
+    const seconds =
+        Math.floor(
+            (difference%(1000*60))/1000
+        );
+
+    document.getElementById("days").textContent =
+        String(days).padStart(2,"0");
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2,"0");
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2,"0");
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2,"0");
+}
+
+countdown();
+setInterval(countdown,1000);
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+const phone="593983557987";
+
+const message =
+`¡Hola! 💕 Confirmo mi asistencia al cumpleaños de Valentina Carrera 🎀🍓
+
+🎂 Valentina cumple 8 años
+📅 27 de noviembre
+⏰ 18H00
+
+¡Nos vemos en la fiesta! 💗`;
+
+document.getElementById("whatsapp").href =
+"https://wa.me/"+phone+"?text="+encodeURIComponent(message);
+
+
+/* =========================
+   CORAZONES Y FLORES
+========================= */
+
+const elements=[
+    "💗","💕","💖","🌸","🌷","🎀","🍓"
+];
+
+function floating(){
+
+    const item=document.createElement("div");
+
+    item.className="float";
+
+    item.textContent=
+        elements[
+            Math.floor(Math.random()*elements.length)
+        ];
+
+    item.style.left=Math.random()*100+"vw";
+
+    item.style.fontSize=
+        (14+Math.random()*18)+"px";
+
+    item.style.animationDuration=
+        (5+Math.random()*6)+"s";
+
+    document.body.appendChild(item);
+
+    setTimeout(()=>{
+        item.remove();
+    },12000);
+}
+
+setInterval(floating,650);
+
+
+/* =========================
+   CONFETI AL ABRIR
+========================= */
+
+function createConfetti(){
+
+    const pieces=[
+        "🎀","💗","🌸","🍓","💕","✨"
+    ];
+
+    for(let i=0;i<45;i++){
+
+        const piece=document.createElement("div");
+
+        piece.className="confetti";
+
+        piece.textContent=
+            pieces[Math.floor(Math.random()*pieces.length)];
+
+        piece.style.left=
+            Math.random()*100+"vw";
+
+        piece.style.fontSize=
+            (12+Math.random()*15)+"px";
+
+        piece.style.animationDuration=
+            (2+Math.random()*2)+"s";
+
+        piece.style.animationDelay=
+            Math.random()+"s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+            piece.remove();
+        },5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
